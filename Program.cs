@@ -7,6 +7,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient("_client", sp=>{
+    sp.BaseAddress = new Uri(builder.Configuration["BASE_URL"]);
+});
+builder.Services.AddScoped<ElevationAPI.Services.ElevationService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
